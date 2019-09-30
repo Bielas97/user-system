@@ -1,0 +1,12 @@
+<div *ngIf="user !== null" class="media my-border">
+  <img
+    class="align-self-center"
+    [src]="user.photo"
+    [alt]="user.username"
+    />
+  <div class="media-body ml-2">
+    <h3 class="mt-1">{{user.username}}</h3>
+    <h3 class="mt-1">{{user.role}}</h3>
+    <h3 class="mt-1">{{user.email}}</h3>
+  </div>
+</div>

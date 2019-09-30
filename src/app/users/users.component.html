@@ -1,0 +1,15 @@
+<div class="row mt-2">
+  <div class="col-6">
+      <app-table-element
+        *ngFor="let user of users; let i = index"
+        [user]="user"
+        [index]="i"
+        (detailsUser)="getDetailsUser($event)"
+        (editUser)="getEditUser($event)"
+        ></app-table-element>
+  </div>
+  <div class="col-6">
+    <app-user-details [user]="this.detailsUser"></app-user-details>
+    <app-edit-user [user]="this.editUser"></app-edit-user>
+  </div>
+</div>
