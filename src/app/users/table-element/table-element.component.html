@@ -1,10 +1,10 @@
 <div
   class="media my-border"
-  [ngClass]="{'odd-element' : user.username === 'admin' || user.username === 'admin2'}"
+  [ngClass]="{'odd-element' : user.role == 0}"
 >
   <img
     class="align-self-center mr-3"
-    [src]="user.photo"
+    [src]="user.role === 'ADMIN' ? '/assets/img/admin.png' : '/assets/img/user.png'"
     [alt]="user.username"
   >
   <div class="media-body">
@@ -15,5 +15,4 @@
       <button class="btn btn-danger mr-2" (click)="this.onDeleteClicked()">REMOVE</button>
     </div>
   </div>
-
 </div>

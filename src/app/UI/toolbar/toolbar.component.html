@@ -1,0 +1,10 @@
+<nav *ngIf="isToolbarExtended(); else simpleToolbar" class="navbar navbar-expand navbar-dark bg-dark">
+  <a routerLink="/users" class="navbar-brand">Home</a>
+  <button class="btn btn-sm btn-outline-danger my-2 my-sm-0" (click)="logout()">logout</button>
+</nav>
+
+<ng-template #simpleToolbar>
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <a routerLink="/users" class="navbar-brand">Home</a>
+  </nav>
+</ng-template>

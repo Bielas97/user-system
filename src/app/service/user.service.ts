@@ -1,20 +1,24 @@
 import {Injectable} from '@angular/core';
 import {User} from '../model/user';
 import {Role} from '../model/role';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  private baseUrl = 'http://localhost:8080/users';
 
   readonly users: User[] = [
-    {id: 1, username: 'admin', password: '1234', email: 'admin@gmail.com', role: Role.ROLE_ADMIN, photo: '/assets/img/admin.png'},
-    {id: 2, username: 'admin2', password: '1234', email: 'admin2@gmail.com', role: Role.ROLE_ADMIN, photo: '/assets/img/admin.png'},
-    {id: 3, username: 'user', password: '1234', email: 'user@gmail.com', role: Role.ROLE_USER, photo: '/assets/img/user.png'},
-    {id: 4, username: 'user2', password: '1234', email: 'user3@gmail.com', role: Role.ROLE_USER, photo: '/assets/img/user.png'}
+    {id: 1, username: 'admin', password: '1234', email: 'admin@gmail.com', role: 'ADMIN', photo: '/assets/img/admin.png'},
+    {id: 2, username: 'admin2', password: '1234', email: 'admin2@gmail.com', role: 'ADMIN', photo: '/assets/img/admin.png'},
+    {id: 3, username: 'user', password: '1234', email: 'user@gmail.com', role: 'USER', photo: '/assets/img/user.png'},
+    {id: 4, username: 'user2', password: '1234', email: 'user3@gmail.com', role: 'USER', photo: '/assets/img/user.png'}
   ];
 
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
   add(user: User): void {
@@ -24,8 +28,23 @@ export class UserService {
     this.users.push(user);
   }
 
-  getAll(): User[] {
-    return this.users;
+  getAll(): Observable<User[]> {
+    const token = 'Bearer '.concat(sessionStorage.getItem('token'));
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: token
+      })
+    };
+    /*let users: User[] = null;*/
+    return this.http.get<User[]>(this.baseUrl, httpOptions);
+      /*.subscribe(response => {
+        console.log(response);
+      }, error => {
+        console.log(error);
+      }, () => {
+        console.log('GET request completed');
+      });*/
   }
 
   getOne(id: number): User {

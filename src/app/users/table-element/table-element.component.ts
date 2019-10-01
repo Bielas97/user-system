@@ -30,6 +30,7 @@ export class TableElementComponent implements OnInit {
 
   onDeleteClicked() {
     this.userService.delete(this.user.id);
+    this.editUser.emit(null);
     this.detailsUser.emit(null);
   }
 
