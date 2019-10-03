@@ -1,0 +1,29 @@
+<div style="text-align:center">
+  <h4>
+    Users Table with pagination
+  </h4>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Username</th>
+      <th scope="col">Role</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users | paginate: config">
+      <th scope="row">{{user.id}}</th>
+      <td>{{user.username}}</td>
+      <td>{{user.role}}</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <pagination-controls
+    (pageChange)="pageChanged($event)"
+    [previousLabel]="labels.previousLabel"
+    [nextLabel]="labels.nextLabel"
+  ></pagination-controls>
+
+</div>

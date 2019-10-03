@@ -13,6 +13,8 @@ import {LoginComponent} from './auth/login/login.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatProgressSpinnerModule} from '@angular/material';
 import { ToolbarComponent } from './UI/toolbar/toolbar.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { UsersTableComponent } from './users/users-table/users-table.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { ToolbarComponent } from './UI/toolbar/toolbar.component';
     UserDetailsComponent,
     EditUserComponent,
     LoginComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    UsersTableComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,8 @@ import { ToolbarComponent } from './UI/toolbar/toolbar.component';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
