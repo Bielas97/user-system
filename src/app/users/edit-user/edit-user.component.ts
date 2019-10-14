@@ -20,11 +20,8 @@ export class EditUserComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.userForm = new FormGroup({
-      username: new FormControl(null),
-      email: new FormControl(null),
-      password: new FormControl(null),
-      role: new FormControl(null),
-      photo: new FormControl(null)
+      username: new FormControl(this.user.username),
+      email: new FormControl(this.user.email)
     });
   }
 
@@ -32,10 +29,7 @@ export class EditUserComponent implements OnInit, OnChanges {
     if (this.userForm != null && changes.user !== null) {
       this.userForm.setValue({
         username: changes.user.currentValue.username,
-        email: changes.user.currentValue.email,
-        password: changes.user.currentValue.password,
-        role: RoleUtils.fromRoleToString(changes.user.currentValue.role),
-        photo: changes.user.currentValue.photo,
+        email: changes.user.currentValue.email
       });
     }
   }
@@ -44,12 +38,10 @@ export class EditUserComponent implements OnInit, OnChanges {
     const username = this.userForm.controls.username.value;
     const email = this.userForm.controls.email.value;
     const password = this.userForm.controls.password.value;
-    const photo = this.userForm.controls.photo.value;
-    const role = this.userForm.controls.role.value;
-    const user: User = {username, email, password, role, photo};
+    const user: User = {username, email, password, role: this.user.role};
 
+    console.log(this.user.password);
     console.log(user);
-    this.userService.update(this.user.id, user);
   }
 
 }

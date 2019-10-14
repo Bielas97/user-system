@@ -1,6 +1,6 @@
 <div *ngIf="(observableUsers | async) as users">
   <div class="row mt-2">
-    <div class="col-6">
+    <div class="col-7">
       <app-table-element
         *ngFor="let user of users; let i = index"
         [user]="user"
@@ -9,7 +9,7 @@
         (editUser)="getEditUser($event)"
       ></app-table-element>
     </div>
-    <div class="col-6" *ngIf="this.editUser || this.detailsUser">
+    <div class="col-5" *ngIf="this.editUser || this.detailsUser">
       <app-user-details [user]="this.detailsUser"></app-user-details>
       <app-edit-user [user]="this.editUser"></app-edit-user>
     </div>

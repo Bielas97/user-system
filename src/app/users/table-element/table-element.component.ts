@@ -29,9 +29,14 @@ export class TableElementComponent implements OnInit {
   }
 
   onDeleteClicked() {
-    this.userService.delete(this.user.id);
+    this.userService.delete(this.user.id).subscribe();
     this.editUser.emit(null);
     this.detailsUser.emit(null);
+    this.user = null;
   }
 
+  onChangeRole() {
+    const newRole = this.user.role === 'ADMIN' ? 'USER' : 'ADMIN';
+    this.userService.changeRole(this.user.id).subscribe(() => this.user.role = newRole);
+  }
 }

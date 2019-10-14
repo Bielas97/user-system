@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {User} from '../model/user';
 import {UserService} from '../service/user.service';
 import {AuthService} from '../service/auth.service';
@@ -14,6 +14,7 @@ export class UsersComponent implements OnInit {
   observableUsers: Observable<User[]>;
   private detailsUser: User = null;
   private editUser: User = null;
+  private users: User[];
 
   constructor(private userService: UserService, private authService: AuthService) {
   }
@@ -28,6 +29,12 @@ export class UsersComponent implements OnInit {
 
   getEditUser(editUser: User) {
     this.editUser = editUser;
+  }
+
+  fetchData() {
+    this.userService.getAll().subscribe(data => {
+      this.users = data;
+    });
   }
 
 }
